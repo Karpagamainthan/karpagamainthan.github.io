@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/skills.css">
+    <link rel="stylesheet" href="css/experience.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">My Portfolio</div>
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link active" data-content="home">Hero</a></li>
+                <li><a href="#" class="nav-link" data-content="about">About</a></li>
+                <li><a href="#" class="nav-link" data-content="skills">Skills</a></li>
+                <li><a href="#" class="nav-link" data-content="experience">Experience</a></li>
+                <li><a href="#" class="nav-link" data-content="projects">Projects</a></li>
+                <li><a href="#" class="nav-link" data-content="contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="dynamic-content-container pt-50">
+        <!-- Home Section -->
+        <div class="dynamic-content active" id="home">
+            <div class="card bg-dark text-white">
+                <div class="row g-0">
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <h3 class="card-title">Hello, It's Me</h3>
+                            <h1 class="card-title">Karpagamainthan M</h1>
+                            <h2 class="card-subtitle">And I'm a <span class="highlight text-info">Frontend
+                                    Developer</span></h2>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus
+                                nulla sed saepe rerum, animi expedita.</p>
+                            <div class="social-icons">
+                                <a href="#" class="text-decoration-none text-info"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="text-decoration-none text-info"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-decoration-none text-info"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-decoration-none text-info"><i
+                                        class="fab fa-linkedin-in"></i></a>
+                            </div>
+                            <a href="#" class="btn btn-info text-white">
+                                <i class="fas fa-file-download"></i> Download CV
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-img col-md-3">
+                        <img src="img/profile.jpg" alt="Profile Image" class="img-fluid rounded-circle">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="dynamic-content hidden" id="about">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h1 class="card-title">About Me</h1>
+                    <p class="card-text">Hello! I’m a software developer passionate about building engaging web
+                        applications. I love learning new technologies and solving challenging problems.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="dynamic-content hidden" id="skills">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h1 class="card-title">Skills</h1>
+        
+                    <h2 class="section-title">Software Proficiency</h2>
+        
+                    <h3 class="proficiency-title">Languages</h3>
+                    <div class="skills-container">
+                        <div class="skill-item" aria-label="Java programming">
+                            <i class="fab fa-java"></i>
+                            <p>Java</p>
+                        </div>
+                        <div class="skill-item" aria-label="C programming">
+                            <i class="fab fa-c"></i>
+                            <p>C</p>
+                        </div>
+                    </div>
+        
+                    <h3 class="proficiency-title">Basic Tools</h3>
+                    <div class="skills-container">
+                        <div class="skill-item" aria-label="Git version control">
+                            <i class="fab fa-git"></i>
+                            <p>Git</p>
+                        </div>
+                        <div class="skill-item" aria-label="Microsoft Office">
+                            <i class="fab fa-microsoft"></i>
+                            <p>MS Office</p>
+                        </div>
+                    </div>
+        
+                    <h3 class="proficiency-title">Web Technologies</h3>
+                    <div class="skills-container">
+                        <div class="skill-item" aria-label="HTML">
+                            <i class="fab fa-html5"></i>
+                            <p>HTML</p>
+                        </div>
+                        <div class="skill-item" aria-label="CSS">
+                            <i class="fab fa-css3-alt"></i>
+                            <p>CSS</p>
+                        </div>
+                        <div class="skill-item" aria-label="JavaScript">
+                            <i class="fab fa-js"></i>
+                            <p>JavaScript</p>
+                        </div>
+                        <div class="skill-item" aria-label="Node.js">
+                            <i class="fab fa-node"></i>
+                            <p>Node.js</p>
+                        </div>
+                        <div class="skill-item" aria-label="Servlet">
+                            <i class="fab fa-java"></i>
+                            <p>Servlet</p>
+                        </div>
+                        <div class="skill-item" aria-label="JSP">
+                            <i class="fab fa-java"></i>
+                            <p>JSP</p>
+                        </div>
+                    </div>
+        
+                    <h3 class="proficiency-title">Database</h3>
+                    <div class="skills-container">
+                        <div class="skill-item" aria-label="MySQL Database">
+                            <i class="fa-solid fa-database"></i>
+                            <p>MySQL</p>
+                        </div>
+                        <div class="skill-item" aria-label="MongoDB Database">
+                            <i class="fa-solid fa-database"></i>
+                            <p>MongoDB</p>
+                        </div>
+                    </div>
+        
+                    <h3 class="proficiency-title">IDE</h3>
+                    <div class="skills-container">
+                        <div class="skill-item" aria-label="Visual Studio Code" role="img">
+                            <i class="fas fa-laptop-code"></i>
+                            <p>VS Code</p>
+                        </div>
+                        <div class="skill-item" aria-label="Eclipse IDE" role="img">
+                            <i class="fas fa-code"></i>
+                            <p>Eclipse</p>
+                        </div>
+                        <div class="skill-item" aria-label="IntelliJ IDEA" role="img">
+                            <i class="fas fa-laptop-code"></i>
+                            <p>IntelliJ</p>
+                        </div>
+                    </div>
+        
+                    <h2 class="section-title">Areas of Interest</h2>
+                    <ul class="interest-list">
+                        <li>
+                            <i class="fas fa-brain"></i>
+                            Logical Thinking & Problem Solving
+                        </li>
+                        <li>
+                            <i class="fas fa-code"></i>
+                            OOPS & Java Programming
+                        </li>
+                        <li>
+                            <i class="fas fa-laptop-code"></i>
+                            Servlet and JSP Web Technology
+                        </li>
+                        <li>
+                            <i class="fas fa-cogs"></i>
+                            Java Restful Web Services
+                        </li>
+                        <li>
+                            <i class="fas fa-users-cog"></i>
+                            Full Stack Development
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Experience Section -->
+        <div class="dynamic-content hidden" id="experience">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h1 class="card-title">Experience</h1>
+                    <p class="card-text">I have 3+ years of experience working in tech startups and consulting firms. My
+                        expertise includes backend development, frontend architecture, and database design.</p>
+
+                    <!-- PSG Software Technologies -->
+                    <div class="experience-entry">
+                        <h2 class="card-subtitle">PSG Software Technologies | Software Engineer</h2>
+                        <p class="card-text"><strong>July 2023 - Present</strong></p>
+                        <ul>
+                            <li>Trained with Senior Engineers in specifications, design, coding, testing, and
+                                maintenance.</li>
+                            <li>Participated in the entire software development cycle from start to end of the final
+                                product.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Zoho Corporation -->
+                    <div class="experience-entry">
+                        <h2 class="card-subtitle">Zoho Corporation | Software Developer Intern</h2>
+                        <p class="card-text"><strong>September 2022 - April 2023</strong></p>
+                        <ul>
+                            <li>Trained with Senior Engineers in specifications, design, coding, testing, and
+                                maintenance.</li>
+                            <li>Participated in the entire software development cycle from start to end of the final
+                                product.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Projects Section -->
+        <div class="dynamic-content hidden" id="projects">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h1 class="card-title">Projects</h1>
+                    <p class="card-text">Some of my notable projects include:</p>
+                    <ul>
+                        <li>Course Outcome & Program Outcome Attainment Calculation - Website for calculating the
+                            attainment of course outcomes for NBA purposes.</li>
+                        <li>E-Bus Pass Renewal System - A web application for renewing bus passes.</li>
+                        <li>Covid-19 Dashboard - Displayed state-wise daily status of COVID-19 cases using HTML, CSS,
+                            JavaScript, and Node.js.</li>
+                        <li>Employee Management System - A console-based Java application for managing employee data.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="dynamic-content hidden" id="contact">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h1 class="card-title">Contact</h1>
+                    <p class="card-text">Email: <a href="mailto:karpagamainthan@gmail.com"
+                            class="text-decoration-none text-info">karpagamainthan@gmail.com</a></p>
+                    <p class="card-text">Address: 100, Karuparayan Kovil St, Anupparpalayam Pudur, Tirupur-641652</p>
+                    <p class="card-text">Phone: +91 9361078721</p>
+                    <p class="card-text">LinkedIn: <a href="https://www.linkedin.com/in/karpagamainthan-m515a1722b"
+                            target="_blank" class="text-decoration-none text-info">Karpagamainthan M</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

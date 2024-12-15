@@ -1,0 +1,76 @@
+@media (max-width: 768px) {
+    
+    #experience h1.card-title {
+        font-size: 1.5rem;
+    }
+
+    #experience .card-body {
+        padding: 1.5rem;
+    }
+
+    .experience-entry h2.card-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .experience-entry p {
+        font-size: 1rem;
+    }
+
+    .experience-entry ul li {
+        font-size: 0.9rem;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+
+    .skill-item {
+        width: 150px;
+        height: 150px;
+    }
+
+    .proficiency-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .proficiency-item {
+        width: 100%;
+    }
+
+    .proficiency-title {
+        font-size: 1rem;
+    }
+
+    .proficiency-item p {
+        font-size: 0.9rem;
+    }
+
+    .interest-list li {
+        font-size: 1rem;
+    }
+
+    header nav ul {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .hero-img img {
+        max-width: 200px;
+    }
+
+    .dynamic-content-container {
+        padding: 50px 2rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+}
