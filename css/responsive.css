@@ -1,32 +1,32 @@
 @media (max-width: 768px) {
     
     #experience h1.card-title {
-        font-size: 1.5rem;
+        font-size: 29px;
     }
 
     #experience .card-body {
-        padding: 1.5rem;
+        padding: 24px;
     }
 
     .experience-entry h2.card-subtitle {
-        font-size: 1.4rem;
+        font-size: 24px;
     }
 
     .experience-entry p {
-        font-size: 1rem;
+        font-size: 16px;
     }
 
     .experience-entry ul li {
-        font-size: 0.9rem;
+        font-size: 15px;
     }
 
     .skills-container {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
 
     .skill-item {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
     }
 
     .proficiency-container {
@@ -38,39 +38,41 @@
     }
 
     .proficiency-title {
-        font-size: 1rem;
+        font-size: 18px;
     }
 
     .proficiency-item p {
-        font-size: 0.9rem;
+        font-size: 15px;
     }
 
     .interest-list li {
-        font-size: 1rem;
+        font-size: 16px;
     }
 
     header nav ul {
         flex-direction: column;
+        padding: 16px 0;
     }
 
     .card {
         width: 100%;
-        max-width: 350px;
+        max-width: 100%;
+        margin: 16px 0;
     }
 
     .card-body {
-        padding: 1rem;
+        padding: 16px;
     }
 
     .hero-img img {
-        max-width: 200px;
+        max-width: 100%;
     }
 
     .dynamic-content-container {
-        padding: 50px 2rem;
+        padding: 640px 24px;
     }
 
     .card-body {
-        padding: 1rem;
+        padding: 19px;
     }
 }

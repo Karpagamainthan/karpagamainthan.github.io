@@ -24,10 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetContent = e.target.getAttribute('data-content');
-            showSection(targetContent);
+            const targetSection = document.getElementById(targetContent);
+
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                showSection(targetContent);
+            }
+        });
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const targetContent = e.target.getAttribute('data-content');
+                showSection(targetContent);
+            }
         });
     });
 
     showSection('home');
 });
-
