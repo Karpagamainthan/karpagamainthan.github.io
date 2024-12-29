@@ -1,16 +1,20 @@
-## Hi there 👋
+# Karpagamainthan Portfolio
 
-<!--
-**Karpagamainthan/Karpagamainthan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+A React-based portfolio showcasing projects, skills, and achievements.
 
-Here are some ideas to get you started:
+## Available Scripts
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+### `npm run build`
+
+Builds the app for production in the `build` folder.
+
+## Features
+
+- Static React portfolio
+- Minimal and responsive design
