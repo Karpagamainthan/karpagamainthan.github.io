@@ -1,0 +1,78 @@
+/* General styling for the skills section */
+.skills-container {
+  padding: 40px;
+  background-color: #000000;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #000000, #333);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #6f8fb0;
+  margin-bottom: 30px;
+}
+
+/* Grid for skills logos */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap into rows */
+  justify-content: center; /* Center-align rows with fewer items */
+  gap: 20px; /* Space between items */
+  max-width: 800px; /* Limit the grid width to ensure 8 items per row */
+  margin: 0 auto; /* Center the grid itself within the container */
+}
+
+/* Styling for each skill item */
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center logo and name horizontally */
+  justify-content: center; /* Center logo and name vertically */
+  text-align: center;
+  font-size: 1rem;
+  color: #333;
+  width: 90px; /* Fixed width for consistency */
+}
+
+.skill-item:hover .skill-logo {
+  transform: scale(1.1); /* Slight hover effect */
+}
+
+.skill-logo {
+  width: 50px; /* Adjust logo size */
+  height: 50px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.skill-name {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: 500;
+  text-align: center; /* Ensure text stays centered */
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    gap: 15px;
+  }
+
+  .skill-item {
+    width: 80px; /* Adjust width for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-item {
+    width: 70px;
+  }
+
+  .skill-logo {
+    width: 40px;
+    height: 40px;
+  }
+}
