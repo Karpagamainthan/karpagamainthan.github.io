@@ -2,265 +2,395 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/card.css">
-    <link rel="stylesheet" href="css/skills.css">
-    <link rel="stylesheet" href="css/experience.css">
-    <link rel="stylesheet" href="css/responsive.css">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Portfolio</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.jpeg" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
 </head>
 
-<body>
-    <header>
-        <div class="logo">My Portfolio</div>
-        <nav>
-            <ul>
-                <li><a href="#" class="nav-link active" data-content="home">Hero</a></li>
-                <li><a href="#" class="nav-link" data-content="about">About</a></li>
-                <li><a href="#" class="nav-link" data-content="skills">Skills</a></li>
-                <li><a href="#" class="nav-link" data-content="experience">Experience</a></li>
-                <li><a href="#" class="nav-link" data-content="projects">Projects</a></li>
-                <li><a href="#" class="nav-link" data-content="contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="index-page">
 
-    <section class="dynamic-content-container pt-50">
-        <!-- Home Section -->
-        <div class="dynamic-content active" id="home">
-            <div class="card bg-dark text-white">
-                <div class="row g-0">
-                    <div class="col-md-9">
-                        <div class="card-body">
-                            <h3 class="card-title">Hello, It's Me</h3>
-                            <h1 class="card-title">Karpagamainthan M</h1>
-                            <h2 class="card-subtitle">And I'm a <span class="highlight text-info">Frontend
-                                    Developer</span></h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus
-                                nulla sed saepe rerum, animi expedita.</p>
-                            <div class="social-icons">
-                                <a href="#" class="text-decoration-none text-info"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="text-decoration-none text-info"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="text-decoration-none text-info"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="text-decoration-none text-info"><i
-                                        class="fab fa-linkedin-in"></i></a>
-                            </div>
-                            <a href="#" class="btn btn-info text-white">
-                                <i class="fas fa-file-download"></i> Download CV
-                            </a>
-                        </div>
-                    </div>
-                    <div class="hero-img col-md-3">
-                        <img src="img/profile.jpg" alt="Profile Image" class="img-fluid rounded-circle">
-                    </div>
-                </div>
-            </div>
-        </div>
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
 
-        <!-- About Section -->
-        <div class="dynamic-content hidden" id="about">
-            <div class="card bg-dark text-white">
-                <div class="card-body">
-                    <h1 class="card-title">About Me</h1>
-                    <p class="card-text">Hello! I’m a software developer passionate about building engaging web
-                        applications. I love learning new technologies and solving challenging problems.</p>
-                </div>
-            </div>
-        </div>
+    <div class="profile-img">
+      <img src="assets/img/profile.jpg" alt="" class="img-fluid rounded-circle">
+    </div>
 
-        <!-- Skills Section -->
-        <div class="dynamic-content hidden" id="skills">
-            <div class="card bg-dark text-white">
-                <div class="card-body">
-                    <h1 class="card-title">Skills</h1>
-        
-                    <h2 class="section-title">Software Proficiency</h2>
-        
-                    <h3 class="proficiency-title">Languages</h3>
-                    <div class="skills-container">
-                        <div class="skill-item" aria-label="Java programming">
-                            <i class="fab fa-java"></i>
-                            <p>Java</p>
-                        </div>
-                        <div class="skill-item" aria-label="C programming">
-                            <i class="fab fa-c"></i>
-                            <p>C</p>
-                        </div>
-                    </div>
-        
-                    <h3 class="proficiency-title">Basic Tools</h3>
-                    <div class="skills-container">
-                        <div class="skill-item" aria-label="Git version control">
-                            <i class="fab fa-git"></i>
-                            <p>Git</p>
-                        </div>
-                        <div class="skill-item" aria-label="Microsoft Office">
-                            <i class="fab fa-microsoft"></i>
-                            <p>MS Office</p>
-                        </div>
-                    </div>
-        
-                    <h3 class="proficiency-title">Web Technologies</h3>
-                    <div class="skills-container">
-                        <div class="skill-item" aria-label="HTML">
-                            <i class="fab fa-html5"></i>
-                            <p>HTML</p>
-                        </div>
-                        <div class="skill-item" aria-label="CSS">
-                            <i class="fab fa-css3-alt"></i>
-                            <p>CSS</p>
-                        </div>
-                        <div class="skill-item" aria-label="JavaScript">
-                            <i class="fab fa-js"></i>
-                            <p>JavaScript</p>
-                        </div>
-                        <div class="skill-item" aria-label="Node.js">
-                            <i class="fab fa-node"></i>
-                            <p>Node.js</p>
-                        </div>
-                        <div class="skill-item" aria-label="Servlet">
-                            <i class="fab fa-java"></i>
-                            <p>Servlet</p>
-                        </div>
-                        <div class="skill-item" aria-label="JSP">
-                            <i class="fab fa-java"></i>
-                            <p>JSP</p>
-                        </div>
-                    </div>
-        
-                    <h3 class="proficiency-title">Database</h3>
-                    <div class="skills-container">
-                        <div class="skill-item" aria-label="MySQL Database">
-                            <i class="fa-solid fa-database"></i>
-                            <p>MySQL</p>
-                        </div>
-                        <div class="skill-item" aria-label="MongoDB Database">
-                            <i class="fa-solid fa-database"></i>
-                            <p>MongoDB</p>
-                        </div>
-                    </div>
-        
-                    <h3 class="proficiency-title">IDE</h3>
-                    <div class="skills-container">
-                        <div class="skill-item" aria-label="Visual Studio Code" role="img">
-                            <i class="fas fa-laptop-code"></i>
-                            <p>VS Code</p>
-                        </div>
-                        <div class="skill-item" aria-label="Eclipse IDE" role="img">
-                            <i class="fas fa-code"></i>
-                            <p>Eclipse</p>
-                        </div>
-                        <div class="skill-item" aria-label="IntelliJ IDEA" role="img">
-                            <i class="fas fa-laptop-code"></i>
-                            <p>IntelliJ</p>
-                        </div>
-                    </div>
-        
-                    <h2 class="section-title">Areas of Interest</h2>
-                    <ul class="interest-list">
-                        <li>
-                            <i class="fas fa-brain"></i>
-                            Logical Thinking & Problem Solving
-                        </li>
-                        <li>
-                            <i class="fas fa-code"></i>
-                            OOPS & Java Programming
-                        </li>
-                        <li>
-                            <i class="fas fa-laptop-code"></i>
-                            Servlet and JSP Web Technology
-                        </li>
-                        <li>
-                            <i class="fas fa-cogs"></i>
-                            Java Restful Web Services
-                        </li>
-                        <li>
-                            <i class="fas fa-users-cog"></i>
-                            Full Stack Development
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Experience Section -->
-        <div class="dynamic-content hidden" id="experience">
-            <div class="card bg-dark text-white">
-                <div class="card-body">
-                    <h1 class="card-title">Experience</h1>
-                    <p class="card-text">I have 3+ years of experience working in tech startups and consulting firms. My
-                        expertise includes backend development, frontend architecture, and database design.</p>
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+      <h1 class="fs-5">KARPAGAMAINTHAN M</h1>
+    </a>
 
-                    <!-- PSG Software Technologies -->
-                    <div class="experience-entry">
-                        <h2 class="card-subtitle">PSG Software Technologies | Software Engineer</h2>
-                        <p class="card-text"><strong>July 2023 - Present</strong></p>
-                        <ul>
-                            <li>Trained with Senior Engineers in specifications, design, coding, testing, and
-                                maintenance.</li>
-                            <li>Participated in the entire software development cycle from start to end of the final
-                                product.</li>
-                        </ul>
-                    </div>
+    <div class="social-links text-center">
+      <a href="https://www.linkedin.com/in/karpagamainthan-m-515a1722b" class="linkedin" target="_blank">
+        <i class="b bi-linkedin"></i>
+      </a>      
+    </div>
 
-                    <!-- Zoho Corporation -->
-                    <div class="experience-entry">
-                        <h2 class="card-subtitle">Zoho Corporation | Software Developer Intern</h2>
-                        <p class="card-text"><strong>September 2022 - April 2023</strong></p>
-                        <ul>
-                            <li>Trained with Senior Engineers in specifications, design, coding, testing, and
-                                maintenance.</li>
-                            <li>Participated in the entire software development cycle from start to end of the final
-                                product.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
 
+  </header>
 
-        <!-- Projects Section -->
-        <div class="dynamic-content hidden" id="projects">
-            <div class="card bg-dark text-white">
-                <div class="card-body">
-                    <h1 class="card-title">Projects</h1>
-                    <p class="card-text">Some of my notable projects include:</p>
-                    <ul>
-                        <li>Course Outcome & Program Outcome Attainment Calculation - Website for calculating the
-                            attainment of course outcomes for NBA purposes.</li>
-                        <li>E-Bus Pass Renewal System - A web application for renewing bus passes.</li>
-                        <li>Covid-19 Dashboard - Displayed state-wise daily status of COVID-19 cases using HTML, CSS,
-                            JavaScript, and Node.js.</li>
-                        <li>Employee Management System - A console-based Java application for managing employee data.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+  <main class="main">
 
-        <!-- Contact Section -->
-        <div class="dynamic-content hidden" id="contact">
-            <div class="card bg-dark text-white">
-                <div class="card-body">
-                    <h1 class="card-title">Contact</h1>
-                    <p class="card-text">Email: <a href="mailto:karpagamainthan@gmail.com"
-                            class="text-decoration-none text-info">karpagamainthan@gmail.com</a></p>
-                    <p class="card-text">Address: 100, Karuparayan Kovil St, Anupparpalayam Pudur, Tirupur-641652</p>
-                    <p class="card-text">Phone: +91 9361078721</p>
-                    <p class="card-text">LinkedIn: <a href="https://www.linkedin.com/in/karpagamainthan-m515a1722b"
-                            target="_blank" class="text-decoration-none text-info">Karpagamainthan M</a></p>
-                </div>
-            </div>
-        </div>
+    <section id="hero" class="hero section dark-background">
+
+      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" class="">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <p class="fs-1">KARPAGAMAINTHAN M</p>
+        <p>I'm <span class="typed" data-typed-items="Software Engineer, Full Stack Developer, Java Developer">Software Engineer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+
+      </div>
+
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <section id="about" class="about section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About</h2>
+        <p>Full-stack developer skilled in Java, Node.js, and modern web technologies. Passionate about building scalable, secure, and efficient web applications. Strong background in software engineering with a problem-solving mindset.</p>
+      </div>
+    
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+    
+        <div class="row gy-4 justify-content-center">
+          <div class="col-lg-4">
+            <img src="assets/img/my-profile-img.jpg" class="img-fluid" alt="Karpagamainthan Profile Image">
+          </div>
+    
+          <div class="col-lg-8 content">
+            <h2>Software Developer</h2>
+            <p class="fst-italic py-3">
+              I'm a software developer with a passion for full-stack development, creating web-based solutions that are user-friendly, efficient, and maintainable. With a foundation in Java and backend systems, I enjoy solving technical challenges and contributing to impactful projects.
+            </p>
+    
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>25 October 2001</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+91 9361078721</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Tirupur, Tamil Nadu, India</span></li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>24</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Bachelor of Technology (IT)</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>karpagamainthan@gmail.com</span></li>
+                </ul>
+              </div>
+            </div>
+    
+            <p class="py-3">
+              Experienced in both frontend and backend technologies like Java, JavaScript, Node.js, Servlet, JSP, MySQL, and MongoDB. I’ve worked on real-time projects and currently serve as a Software Engineer at PSG Software Technologies, following an internship at Zoho Corporation.
+            </p>
+            <p>
+              I enjoy learning new tools, collaborating with teams, and building efficient, user-friendly web applications that solve real problems.
+            </p>            
+    
+          </div>
+        </div>
+    
+      </div>
+    
+    </section>
+    
+    <section id="skills" class="skills section light-background">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Skills</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row skills-content skills-animation">
+          <div class="skills-grid">
+            <div class="skill-item">
+              <img src="assets/img/skills/java.png" alt="Java logo" class="skill-logo" />
+              <span class="skill-name">Java</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/c.png" alt="C logo" class="skill-logo" />
+              <span class="skill-name">C</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/java-script.png" alt="JavaScript logo" class="skill-logo" />
+              <span class="skill-name">JavaScript</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/html.png" alt="HTML logo" class="skill-logo" />
+              <span class="skill-name">HTML</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/css.png" alt="CSS logo" class="skill-logo" />
+              <span class="skill-name">CSS</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/nodejs.png" alt="Node.js logo" class="skill-logo" />
+              <span class="skill-name">Node.js</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/mysql.png" alt="MySQL logo" class="skill-logo" />
+              <span class="skill-name">MySQL</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/mongodb.png" alt="MongoDB logo" class="skill-logo" />
+              <span class="skill-name">MongoDB</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/github.png" alt="Git logo" class="skill-logo" />
+              <span class="skill-name">Git</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/vscode.png" alt="Visual Studio Code logo" class="skill-logo" />
+              <span class="skill-name">VS Code</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/java_eclipse.png" alt="Eclipse logo" class="skill-logo" />
+              <span class="skill-name">Eclipse</span>
+            </div>
+            <div class="skill-item">
+              <img src="assets/img/skills/intellij.png" alt="IntelliJ logo" class="skill-logo" />
+              <span class="skill-name">IntelliJ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="resume" class="resume section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Resume</h2>
+        <p>Experienced and detail-oriented Software Developer with strong skills in full-stack development, problem-solving, and creating efficient, scalable web applications.</p>
+      </div>
+    
+      <div class="container">
+        <div class="row">
+    
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+    
+            <h3 class="resume-title">Summary</h3>
+            <div class="resume-item pb-0">
+              <h4>Karpagamainthan M</h4>
+              <p><em>Software Developer with experience in full-stack development using Java, Node.js, and web technologies. Skilled in building scalable web apps, with strong foundations in problem-solving and backend development.</em></p>
+              <ul>
+                <li>100, Karuparayan Kovil St, Anupparpalayam Pudur, Tirupur - 641652</li>
+                <li>+91 93610 78721</li>
+                <li>karpagamainthan@gmail.com</li>
+              </ul>
+            </div>
+    
+            <h3 class="resume-title">Education</h3>
+            <div class="resume-item">
+              <h4>Bachelor of Technology in Information Technology</h4>
+              <h5>2019 - 2023</h5>
+              <p><em>Sri Shakthi Institute of Engineering and Technology, Coimbatore</em></p>
+              <p>Graduated with 7.9 CGPA. Studied software engineering, networking, database management. Built projects in full-stack development, Java, and web applications.</p>
+            </div>
+    
+            <h3 class="resume-title">Certifications & Awards</h3>
+            <div class="resume-item">
+              <ul>
+                <li>Certified in Java – KICE Infosystems (2019)</li>
+                <li>Event Organizer – ICAPST 2020, Sri Shakthi Institute of Engineering and Technology</li>
+              </ul>
+            </div>
+    
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+    
+            <h3 class="resume-title">Professional Experience</h3>
+            <div class="resume-item">
+              <h4>Software Engineer</h4>
+              <h5>July 2023 – Present</h5>
+              <p><em>PSG Software Technologies</em></p>
+              <ul>
+                <li>Collaborated with teams to deliver end-to-end web applications.</li>
+                <li>Designed and implemented software features focused on performance and scalability.</li>
+                <li>Worked across all stages of SDLC from requirements to deployment.</li>
+              </ul>
+            </div>
+    
+            <div class="resume-item">
+              <h4>Software Developer Intern</h4>
+              <h5>Sept 2022 – April 2023</h5>
+              <p><em>Zoho Corporation</em></p>
+              <ul>
+                <li>Worked on real-time debugging, database management, and development tasks.</li>
+                <li>Learned best practices in software engineering under the guidance of senior developers.</li>
+              </ul>
+            </div>
+    
+            <h3 class="resume-title">Key Skills</h3>
+            <div class="resume-item">
+              <ul>
+                <li><strong>Languages:</strong> Java, C, JavaScript</li>
+                <li><strong>Web Technologies:</strong> HTML, CSS, Node.js, Servlet, JSP</li>
+                <li><strong>Databases:</strong> MySQL, MongoDB</li>
+                <li><strong>Tools:</strong> VS Code, Eclipse, IntelliJ, Git</li>
+                <li><strong>Strengths:</strong> Quick learner, Creative thinker, Team player</li>
+              </ul>
+            </div>
+    
+          </div>
+    
+        </div>
+      </div>
+    </section>
+    
+    <section id="contact" class="contact section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Feel free to reach out for any collaboration, project inquiries, or opportunities.</p>
+      </div>
+    
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+    
+          <div class="col-lg-5">
+            <div class="info-wrap">
+    
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Address</h3>
+                  <p>100, Karuparayan Kovil St, Anupparpalayam Pudur, Tirupur - 641652, Tamil Nadu, India</p>
+                </div>
+              </div>
+    
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Call Me</h3>
+                  <p>+91 93610 78721</p>
+                </div>
+              </div>
+    
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email</h3>
+                  <p>karpagamainthan@gmail.com</p>
+                </div>
+              </div>
+    
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.049512801788!2d77.35212727505442!3d11.113269152559286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba90fbf472d8b1b%3A0xc0a62ac9d69e7c7f!2sAnupparpalayam%20Pudur%2C%20Tiruppur%2C%20Tamil%20Nadu%20641652!5e0!3m2!1sen!2sin!4v1714559321145!5m2!1sen!2sin" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              
+            </div>
+          </div>
+    
+          <div class="col-lg-7">
+            <form class="php-email-form">
+              <div class="row gy-4">
+            
+                <div class="col-md-6">
+                  <label for="name-field" class="pb-2">Your Name</label>
+                  <input type="text" name="name" id="name-field" class="form-control" required>
+                </div>
+            
+                <div class="col-md-6">
+                  <label for="email-field" class="pb-2">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email-field" required>
+                </div>
+            
+                <div class="col-md-12">
+                  <label for="subject-field" class="pb-2">Subject</label>
+                  <input type="text" class="form-control" name="subject" id="subject-field" required>
+                </div>
+            
+                <div class="col-md-12">
+                  <label for="message-field" class="pb-2">Message</label>
+                  <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
+                </div>
+            
+                <div class="col-md-12 text-center">
+                  <div class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
+                  <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+                </div>
+            
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    
+        </div>
+      </div>
+    
+    </section>
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+    </div>
+
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector(".php-email-form");
+      const sentMessage = form.querySelector(".sent-message");
+  
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+  
+        form.reset();
+        sentMessage.style.display = "block"; 
+        setTimeout(function () {
+          sentMessage.style.display = "none";
+        }, 10000);
+      });
+    });
+  </script>
+  
+  <script src="assets/js/main.js"></script>
+
 </body>
 
 </html>
