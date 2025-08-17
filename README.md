@@ -1,16 +1,28 @@
-## Hi there 👋
+# 👋 Hi, I'm Karpagamainthan M 
+### 💻 Full-Stack Developer | ☁️ Cloud Enthusiast | 🛠️ Problem Solver
 
-<!--
-**Karpagamainthan/Karpagamainthan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<div align="center">
+  
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+</div>
 
-Here are some ideas to get you started:
+## 🚀 About Me
+```java
+public class Developer {
+    private String name = "Karpagamainthan M";
+    private String role = "Full-Stack Developer";
+    private String passion = "Building scalable web solutions";
+    private String[] skills = {"Java", "Node.js", "React", "Cloud Architecture"};
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+    public void sayHi() {
+        System.out.println("Let's build something amazing!");
+    }
+
+    public static void main(String[] args) {
+        Developer me = new Developer();
+        me.sayHi();
+    }
+}
