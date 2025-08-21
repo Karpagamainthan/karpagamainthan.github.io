@@ -7,6 +7,7 @@ const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [projectsPerPage, setProjectsPerPage] = useState(3);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   const projects = [
     {
@@ -19,11 +20,11 @@ const Projects = () => {
       ],
       tech: ["Node.js", "MongoDB", "Redis", "AWS S3", "JWT"],
       image: "/assets/img/projects/fees.png",
-      demoLink: "#",
-      codeLink: "#"
+      demoLink: "",
+      codeLink: ""
     },
     {
-      title: "CO/PO Calculator",
+      title: "CO/PO",
       description: "NBA accreditation system for educational outcomes",
       highlights: [
         "Automated outcome calculations",
@@ -33,7 +34,7 @@ const Projects = () => {
       tech: ["Java", "Servlet", "JSP", "MySQL"],
       image: "/assets/img/projects/copo.png",
       demoLink: "",
-      codeLink: "#"
+      codeLink: "https://github.com/Karpagamainthan/COPO"
     },
     {
       title: "COVID-19 Tracker",
@@ -45,8 +46,8 @@ const Projects = () => {
       ],
       tech: ["JavaScript", "Node.js", "API"],
       image: "/assets/img/projects/covid19.png",
-      demoLink: "#",
-      codeLink: ""
+      demoLink: "",
+      codeLink: "https://github.com/Karpagamainthan/Covid-19-dashboard"
     },
     {
       title: "Employee Management",
@@ -59,16 +60,28 @@ const Projects = () => {
       tech: ["Java", "JDBC"],
       image: "/assets/img/projects/emp1.png",
       demoLink: "",
-      codeLink: ""
+      codeLink: "https://github.com/Karpagamainthan/employee-mgmt-system"
     }
   ];
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth <= 768;
+      const width = window.innerWidth;
+      const mobile = width <= 768;
+      const tablet = width > 768 && width <= 1024;
+      
       setIsMobile(mobile);
-      setProjectsPerPage(mobile ? 1 : 3);
-      if (mobile) setCurrentIndex(0);
+      setIsTablet(tablet);
+      
+      if (mobile) {
+        setProjectsPerPage(1);
+      } else if (tablet) {
+        setProjectsPerPage(2);
+      } else {
+        setProjectsPerPage(3);
+      }
+      
+      if (mobile || tablet) setCurrentIndex(0);
     };
 
     handleResize();

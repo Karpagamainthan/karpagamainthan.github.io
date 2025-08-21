@@ -56,11 +56,11 @@
   padding: 1rem;
   scroll-behavior: smooth;
   min-height: 500px;
+  transition: transform 0.3s ease;
 }
 
 .project-card {
-  flex: 1;
-  min-width: 350px;
+  flex: 0 0 calc(33.333% - 1.33rem);
   background: var(--card-bg);
   border-radius: 16px;
   overflow: hidden;
@@ -268,26 +268,14 @@
   transform: scale(1.2);
 }
 
-@media (max-width: 1200px) {
-  .projects-carousel {
-    padding: 0 3rem;
-  }
-  
+/* Tablet view - 2 projects */
+@media (max-width: 1024px) {
   .project-card {
-    min-width: calc(50% - 1rem);
+    flex: 0 0 calc(50% - 1rem);
   }
 }
 
-@media (max-width: 992px) {
-  .projects-section {
-    padding: 6rem 1.5rem;
-  }
-  
-  .projects-section-header h2 {
-    font-size: 2.4rem;
-  }
-}
-
+/* Mobile view - 1 project */
 @media (max-width: 768px) {
   .projects-section {
     padding: 5rem 1rem;
@@ -298,7 +286,7 @@
   }
   
   .project-card {
-    min-width: 100%;
+    flex: 0 0 100%;
   }
   
   .projects-nav-btn {
@@ -315,7 +303,7 @@
   }
   
   .projects-container {
-    height: 750px;
+    min-height: auto;
   }
 }
 
