@@ -57,8 +57,8 @@ const Experience = () => {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="exp-title">Professional Experience</h2>
-        <p className="exp-subtitle">My career journey and contributions</p>
+        <h2>Professional Experience</h2>
+        <p>My career journey and contributions</p>
       </motion.div>
 
       <div className="experience-container">
