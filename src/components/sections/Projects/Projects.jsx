@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Keyboard, EffectCards } from 'swiper/modules';
+import { FaExternalLinkAlt, FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import './Projects.css';
 
 const Projects = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [projectsPerPage, setProjectsPerPage] = useState(3);
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
 
@@ -67,52 +70,15 @@ const Projects = () => {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      const mobile = width <= 768;
-      const tablet = width > 768 && width <= 1024;
-      
-      setIsMobile(mobile);
-      setIsTablet(tablet);
-      
-      if (mobile) {
-        setProjectsPerPage(1);
-      } else if (tablet) {
-        setProjectsPerPage(2);
-      } else {
-        setProjectsPerPage(3);
-      }
-      
-      if (mobile || tablet) setCurrentIndex(0);
+      setIsMobile(width <= 768);
+      setIsTablet(width > 768 && width <= 1024);
     };
 
     handleResize();
     window.addEventListener('resize', handleResize);
+    
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  useEffect(() => {
-    if (!isMobile) return;
-    const interval = setInterval(() => {
-      setCurrentIndex(prev => (prev >= projects.length - 1 ? 0 : prev + 1));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [isMobile, projects.length]);
-
-  const totalProjects = projects.length;
-  const maxIndex = Math.max(0, totalProjects - projectsPerPage);
-
-  const nextSlide = () => {
-    setCurrentIndex(prev => (prev >= maxIndex ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex(prev => (prev <= 0 ? maxIndex : prev - 1));
-  };
-
-  const goToSlide = (index) => {
-    setCurrentIndex(Math.min(index, maxIndex));
-  };
-
-  const visibleProjects = projects.slice(currentIndex, currentIndex + projectsPerPage);
 
   if (!projects || projects.length === 0) {
     return (
@@ -136,127 +102,139 @@ const Projects = () => {
       >
         <h2>My Projects</h2>
         <p>Selected work showcasing my technical capabilities</p>
+        {/* <p>{isMobile ? 'Swipe left or right to navigate' : 'Use arrow keys or navigation buttons'}</p>      */}
       </motion.div>
+      
 
-      <div className="projects-carousel">
-        {!isMobile && totalProjects > projectsPerPage && (
-          <button
-            className="projects-nav-btn projects-prev-btn"
-            onClick={prevSlide}
-            aria-label="Previous projects"
-          >
-            <FaChevronLeft />
-          </button>
-        )}
-
-        <div className="projects-container">
-          {visibleProjects.map((project, index) => (
-            <motion.div
-              key={`${project.title}-${index}-${currentIndex}`}
-              className="project-card"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={!isMobile ? {
-                y: -10,
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
-              } : {}}
-            >
-              <div className="project-card-image">
-                {project.image && (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/assets/img/projects/default.png';
-                    }}
-                  />
-                )}
-                <div className="project-card-overlay" />
-              </div>
-              <div className="project-card-content">
-                <div className="project-card-header">
-                  <h3>{project.title || 'Untitled Project'}</h3>
-                  <p className="project-card-description">
-                    {project.description || 'No description available'}
-                  </p>
+      <div className="projects-carousel-container">
+        <Swiper
+          modules={[Navigation, Pagination, Keyboard, EffectCards]}
+          spaceBetween={isMobile ? 10 : 30}
+          slidesPerView={isMobile ? 1 : isTablet ? 2 : 3}
+          loop={true}
+          centeredSlides={isMobile}
+          grabCursor={true}
+          keyboard={{ enabled: true }}
+          pagination={{ 
+            clickable: true,
+            el: '.projects-carousel-dots',
+            bulletClass: 'projects-dot',
+            bulletActiveClass: 'active'
+          }}
+          navigation={{
+            nextEl: '.carousel-button.next',
+            prevEl: '.carousel-button.prev',
+          }}
+          effect={isMobile ? 'cards' : undefined}
+          cardsEffect={{
+            slideShadows: false,
+            perSlideOffset: isMobile ? 15 : 0,
+            perSlideRotate: isMobile ? 2 : 0,
+          }}
+          className="projects-swiper"
+        >
+          {projects.map((project, index) => (
+            <SwiperSlide key={index}>
+              <motion.div
+                className="project-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={!isMobile ? {
+                  y: -10,
+                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
+                } : {}}
+              >
+                <div className="project-card-image">
+                  {project.image && (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWVlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM5OTkiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5Qcm9qZWN0IEltYWdlPC90ZXh0Pjwvc3ZnPg==';
+                      }}
+                    />
+                  )}
+                  <div className="project-card-overlay" />
                 </div>
+                <div className="project-card-content">
+                  <div className="project-card-header">
+                    <h3>{project.title || 'Untitled Project'}</h3>
+                    <p className="project-card-description">
+                      {project.description || 'No description available'}
+                    </p>
+                  </div>
 
-                {project.highlights?.length > 0 && (
-                  <ul className="project-features">
-                    {project.highlights.map((feature, i) => (
-                      <li key={i}>
-                        <span className="project-feature-bullet" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                <div className="project-card-footer">
-                  {project.tech?.length > 0 && (
-                    <div className="project-tech-stack">
-                      {project.tech.map((tech, i) => (
-                        <span key={i}>{tech}</span>
+                  {project.highlights?.length > 0 && (
+                    <ul className="project-features">
+                      {project.highlights.slice(0, isMobile ? 2 : 3).map((feature, i) => (
+                        <li key={i}>
+                          <span className="project-feature-bullet" />
+                          {feature}
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   )}
 
-                  <div className="project-links">
-                    {project.demoLink && (
-                      <a
-                        href={project.demoLink}
-                        className="project-demo-btn"
-                        aria-label={`View ${project.title} demo`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaExternalLinkAlt /> Live Demo
-                      </a>
+                  <div className="project-card-footer">
+                    {project.tech?.length > 0 && (
+                      <div className="project-tech-stack">
+                        {project.tech.slice(0, isMobile ? 3 : 5).map((tech, i) => (
+                          <span key={i}>{tech}</span>
+                        ))}
+                      </div>
                     )}
-                    {project.codeLink && (
-                      <a
-                        href={project.codeLink}
-                        className="project-code-btn"
-                        aria-label={`View ${project.title} source code`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaGithub /> Code
-                      </a>
-                    )}
+
+                    <div className="project-links">
+                      {project.demoLink && (
+                        <a
+                          href={project.demoLink}
+                          className="project-demo-btn"
+                          aria-label={`View ${project.title} demo`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaExternalLinkAlt /> Live Demo
+                        </a>
+                      )}
+                      {project.codeLink && (
+                        <a
+                          href={project.codeLink}
+                          className="project-code-btn"
+                          aria-label={`View ${project.title} source code`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaGithub /> Code
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </SwiperSlide>
           ))}
-        </div>
-
-        {!isMobile && totalProjects > projectsPerPage && (
-          <button
-            className="projects-nav-btn projects-next-btn"
-            onClick={nextSlide}
-            aria-label="Next projects"
-          >
-            <FaChevronRight />
-          </button>
+        </Swiper>
+        
+        {!isMobile && (
+          <>
+            <button 
+              className="carousel-button prev" 
+              aria-label="Previous projects"
+            >
+              <FaChevronLeft />
+            </button>
+            <button 
+              className="carousel-button next" 
+              aria-label="Next projects"
+            >
+              <FaChevronRight />
+            </button>
+          </>
         )}
       </div>
-
-      {totalProjects > projectsPerPage && (
-        <div className="projects-carousel-dots">
-          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-            <button
-              key={i}
-              className={`projects-dot ${currentIndex === i ? 'active' : ''}`}
-              onClick={() => goToSlide(i)}
-              aria-label={`View project set ${i + 1}`}
-            />
-          ))}
-        </div>
-      )}
     </section>
   );
 };
