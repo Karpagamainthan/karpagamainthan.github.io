@@ -3,11 +3,10 @@ import { useEffect } from 'react';
 const useScrollAnimate = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return;
-
-    const elements = document.querySelectorAll('[data-animate]');
+    const attrs = ['[data-animate]', '[data-animate-left]', '[data-animate-right]'];
+    const elements = document.querySelectorAll(attrs.join(', '));
 
     if (!('IntersectionObserver' in window)) {
       elements.forEach(el => el.classList.add('animated'));
@@ -18,16 +17,17 @@ const useScrollAnimate = () => {
       entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
-            observer.unobserve(entry.target);
+            const el = entry.target;
+            const delay = el.dataset.delay || 0;
+            setTimeout(() => el.classList.add('animated'), Number(delay));
+            observer.unobserve(el);
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -8% 0px' }
     );
 
     elements.forEach(el => observer.observe(el));
-
     return () => observer.disconnect();
   }, []);
 };

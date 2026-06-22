@@ -1,239 +1,167 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Keyboard, EffectCards } from 'swiper/modules';
-import { FaExternalLinkAlt, FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { useState } from 'react';
+import { FaExternalLinkAlt, FaGithub, FaCheck, FaLock } from 'react-icons/fa';
+import { projectsData, socialLinks } from '../../../data/portfolioData';
 import './Projects.css';
 
-const Projects = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
+const CATS = ['all', 'fullstack', 'backend', 'frontend'];
 
-  const projects = [
-    {
-      title: "Laudea Fees",
-      description: "Secure payment gateway integration with cloud storage",
-      highlights: [
-        "Integrated Paytm & Billdesk payment processing",
-        "JWT authentication with RBAC",
-        "AWS S3 storage with Redis caching"
-      ],
-      tech: ["Node.js", "MongoDB", "Redis", "AWS S3", "JWT"],
-      image: "/assets/img/projects/fees.png",
-      demoLink: "",
-      codeLink: ""
-    },
-    {
-      title: "CO/PO",
-      description: "NBA accreditation system for educational outcomes",
-      highlights: [
-        "Automated outcome calculations",
-        "Data visualization dashboard",
-        "MySQL database integration"
-      ],
-      tech: ["Java", "Servlet", "JSP", "MySQL"],
-      image: "/assets/img/projects/copo.png",
-      demoLink: "",
-      codeLink: "https://github.com/Karpagamainthan/COPO"
-    },
-    {
-      title: "COVID-19 Tracker",
-      description: "Real-time pandemic data visualization",
-      highlights: [
-        "Interactive state-wise statistics",
-        "API integration with dynamic charts",
-        "Responsive dashboard"
-      ],
-      tech: ["JavaScript", "Node.js", "API"],
-      image: "/assets/img/projects/covid19.png",
-      demoLink: "",
-      codeLink: "https://github.com/Karpagamainthan/Covid-19-dashboard"
-    },
-    {
-      title: "Employee Management",
-      description: "Console-based HR records system",
-      highlights: [
-        "CRUD operations for employee data",
-        "JDBC database connectivity",
-        "Modular Java architecture"
-      ],
-      tech: ["Java", "JDBC"],
-      image: "/assets/img/projects/emp1.png",
-      demoLink: "",
-      codeLink: "https://github.com/Karpagamainthan/employee-mgmt-system"
-    }
-  ];
+const CAT_COLORS = {
+  fullstack: '#e85d26',
+  backend:   '#13afae',
+  frontend:  '#8b5cf6',
+};
 
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      setIsMobile(width <= 768);
-      setIsTablet(width > 768 && width <= 1024);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  if (!projects || projects.length === 0) {
-    return (
-      <section className="projects-section" id="projects">
-        <div className="projects-section-header">
-          <h2>My Projects</h2>
-          <p>No projects to display at the moment</p>
-        </div>
-      </section>
-    );
-  }
+const ProjectCard = ({ proj, index }) => {
+  const accentColor = CAT_COLORS[proj.category] || 'var(--accent-2)';
 
   return (
-    <section className="projects-section" id="projects">
-      <motion.div
-        className="projects-section-header"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <h2>My Projects</h2>
-        <p>Selected work showcasing my technical capabilities</p>
-        {/* <p>{isMobile ? 'Swipe left or right to navigate' : 'Use arrow keys or navigation buttons'}</p>      */}
-      </motion.div>
-      
+    <article
+      className={`pj-card pj-card--enter${proj.featured ? ' pj-card--featured' : ''}`}
+      style={{ '--card-accent': accentColor, animationDelay: `${index * 80}ms` }}
+    >
+      {/* Decorative number */}
+      <span className="pj-card__bg-num" aria-hidden="true">
+        {String(index + 1).padStart(2, '0')}
+      </span>
 
-      <div className="projects-carousel-container">
-        <Swiper
-          modules={[Navigation, Pagination, Keyboard, EffectCards]}
-          spaceBetween={isMobile ? 10 : 30}
-          slidesPerView={isMobile ? 1 : isTablet ? 2 : 3}
-          loop={true}
-          centeredSlides={isMobile}
-          grabCursor={true}
-          keyboard={{ enabled: true }}
-          pagination={{ 
-            clickable: true,
-            el: '.projects-carousel-dots',
-            bulletClass: 'projects-dot',
-            bulletActiveClass: 'active'
-          }}
-          navigation={{
-            nextEl: '.carousel-button.next',
-            prevEl: '.carousel-button.prev',
-          }}
-          effect={isMobile ? 'cards' : undefined}
-          cardsEffect={{
-            slideShadows: false,
-            perSlideOffset: isMobile ? 15 : 0,
-            perSlideRotate: isMobile ? 2 : 0,
-          }}
-          className="projects-swiper"
-        >
-          {projects.map((project, index) => (
-            <SwiperSlide key={index}>
-              <motion.div
-                className="project-card"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={!isMobile ? {
-                  y: -10,
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
-                } : {}}
-              >
-                <div className="project-card-image">
-                  {project.image && (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading="lazy"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWVlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM5OTkiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5Qcm9qZWN0IEltYWdlPC90ZXh0Pjwvc3ZnPg==';
-                      }}
-                    />
-                  )}
-                  <div className="project-card-overlay" />
-                </div>
-                <div className="project-card-content">
-                  <div className="project-card-header">
-                    <h3>{project.title || 'Untitled Project'}</h3>
-                    <p className="project-card-description">
-                      {project.description || 'No description available'}
-                    </p>
-                  </div>
+      {/* Top accent bar */}
+      <div className="pj-card__accent-bar" />
 
-                  {project.highlights?.length > 0 && (
-                    <ul className="project-features">
-                      {project.highlights.slice(0, isMobile ? 2 : 3).map((feature, i) => (
-                        <li key={i}>
-                          <span className="project-feature-bullet" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+      {/* Header row */}
+      <div className="pj-card__header">
+        <div className="pj-card__badges">
+          <span className="pj-card__cat-badge">{proj.category}</span>
+          {proj.featured && <span className="pj-card__featured-badge">★ Featured</span>}
+        </div>
+        <div className="pj-card__links">
+          {proj.code ? (
+            <a
+              href={proj.code}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pj-link pj-link--ghost"
+              aria-label="View source code"
+            >
+              <FaGithub /> <span>Code</span>
+            </a>
+          ) : null}
+          {proj.demo ? (
+            <a
+              href={proj.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pj-link pj-link--solid"
+              aria-label="View live demo"
+            >
+              <FaExternalLinkAlt /> <span>Live</span>
+            </a>
+          ) : null}
+          {!proj.code && !proj.demo && (
+            <span className="pj-link pj-link--locked">
+              <FaLock /> <span>Private</span>
+            </span>
+          )}
+        </div>
+      </div>
 
-                  <div className="project-card-footer">
-                    {project.tech?.length > 0 && (
-                      <div className="project-tech-stack">
-                        {project.tech.slice(0, isMobile ? 3 : 5).map((tech, i) => (
-                          <span key={i}>{tech}</span>
-                        ))}
-                      </div>
-                    )}
+      {/* Title */}
+      <h3 className="pj-card__title">{proj.title}</h3>
 
-                    <div className="project-links">
-                      {project.demoLink && (
-                        <a
-                          href={project.demoLink}
-                          className="project-demo-btn"
-                          aria-label={`View ${project.title} demo`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <FaExternalLinkAlt /> Live Demo
-                        </a>
-                      )}
-                      {project.codeLink && (
-                        <a
-                          href={project.codeLink}
-                          className="project-code-btn"
-                          aria-label={`View ${project.title} source code`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <FaGithub /> Code
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </SwiperSlide>
+      {/* Description */}
+      <p className="pj-card__desc">{proj.desc}</p>
+
+      {/* Highlights */}
+      <ul className="pj-card__highlights">
+        {proj.highlights.map((h, i) => (
+          <li key={i} className="pj-card__highlight">
+            <FaCheck className="pj-card__check" aria-hidden="true" />
+            {h}
+          </li>
+        ))}
+      </ul>
+
+      {/* Footer: tech stack */}
+      <div className="pj-card__footer">
+        <div className="pj-card__tech">
+          {proj.tech.map(t => (
+            <span key={t} className="pj-card__tech-tag">{t}</span>
           ))}
-        </Swiper>
-        
-        {!isMobile && (
-          <>
-            <button 
-              className="carousel-button prev" 
-              aria-label="Previous projects"
-            >
-              <FaChevronLeft />
-            </button>
-            <button 
-              className="carousel-button next" 
-              aria-label="Next projects"
-            >
-              <FaChevronRight />
-            </button>
-          </>
-        )}
+        </div>
+      </div>
+    </article>
+  );
+};
+
+const Projects = () => {
+  const [cat, setCat] = useState('all');
+  const filtered = cat === 'all'
+    ? projectsData
+    : projectsData.filter(p => p.category === cat);
+
+  return (
+    <section className="projects" id="projects">
+      <div className="container">
+
+        {/* Header */}
+        <div className="projects__header" data-animate>
+          <div className="section-title-wrap">
+            <span className="section-eyebrow">
+              <span className="section-eyebrow__line" />
+              Projects
+              <span className="section-eyebrow__line" />
+            </span>
+            <h2 className="section-title-modern">
+              Selected
+              <span className="section-title-modern__accent"> work</span>
+              <span className="projects__dot">.</span>
+            </h2>
+            <p className="section-title-modern__sub">
+              Showcasing technical capabilities and real-world problem solving.
+            </p>
+          </div>
+        </div>
+
+        {/* Filter tabs */}
+        <div className="projects__tabs" data-animate>
+          {CATS.map(c => {
+            const count = c === 'all'
+              ? projectsData.length
+              : projectsData.filter(p => p.category === c).length;
+            return (
+              <button
+                key={c}
+                className={`projects__tab${cat === c ? ' active' : ''}`}
+                onClick={() => setCat(c)}
+              >
+                {c.charAt(0).toUpperCase() + c.slice(1)}
+                <span className="projects__tab-count">{count}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Grid */}
+        <div className="projects__grid" key={cat}>
+          {filtered.map((proj, i) => (
+            <ProjectCard key={proj.title} proj={proj} index={i} />
+          ))}
+        </div>
+
+        {/* GitHub CTA */}
+        <div className="projects__cta" data-animate>
+          <p className="projects__cta-text">
+            More projects and open-source contributions on GitHub
+          </p>
+          <a
+            href={socialLinks.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline projects__cta-btn"
+          >
+            <FaGithub /> View GitHub Profile
+          </a>
+        </div>
+
       </div>
     </section>
   );

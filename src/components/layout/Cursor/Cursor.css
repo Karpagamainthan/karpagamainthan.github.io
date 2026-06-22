@@ -1,0 +1,135 @@
+/* Cursor.css */
+
+/* Hide default cursor on all elements when custom cursor is active */
+.custom-cursor * {
+  cursor: none !important;
+}
+
+/* Main cursor dot */
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, var(--accent-2, #6366f1), var(--accent-1, #8b5cf6));
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  transition: transform 0.05s linear, background 0.2s ease;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+/* Outer cursor ring */
+.cursor-ring {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--text-3, rgba(255, 255, 255, 0.3));
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, transform 0.1s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* Trail particles */
+.cursor-trail {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, var(--accent-2, #6366f1), var(--accent-1, #8b5cf6));
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999997;
+  top: 0;
+  left: 0;
+  will-change: transform, opacity;
+  filter: blur(1px);
+  animation: trailFade 0.5s ease-out forwards;
+}
+
+/* Trail fade animation */
+@keyframes trailFade {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* Click effect for dot */
+.dot--click {
+  background: linear-gradient(135deg, var(--text, #ffffff), var(--accent-2, #6366f1));
+  transform-origin: center;
+  transform: scale(1.5) !important;
+}
+
+/* Click effect for ring */
+.ring--click {
+  width: 56px;
+  height: 56px;
+  border-color: var(--accent-2, #6366f1);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+/* Hover effects for interactive elements */
+a:hover ~ .cursor-ring,
+button:hover ~ .cursor-ring,
+[role="button"]:hover ~ .cursor-ring,
+input:hover ~ .cursor-ring,
+textarea:hover ~ .cursor-ring {
+  width: 60px;
+  height: 60px;
+  border-color: var(--accent-2, #6366f1);
+  background: rgba(99, 102, 241, 0.1);
+  transition: all 0.2s ease;
+}
+
+/* Optional: Gradient animation for trails */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Enhanced trail effect with gradient flow (optional) */
+.cursor-trail {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  background-size: 200% 200%;
+  animation: trailFade 0.5s ease-out forwards, gradientFlow 2s ease infinite;
+}
+
+/* Responsive: Hide custom cursor on mobile devices */
+@media (max-width: 768px) {
+  .cursor-dot,
+  .cursor-ring,
+  .cursor-trail {
+    display: none;
+  }
+  
+  .custom-cursor * {
+    cursor: auto !important;
+  }
+}
+
+/* Performance optimization */
+.cursor-dot,
+.cursor-ring,
+.cursor-trail {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}

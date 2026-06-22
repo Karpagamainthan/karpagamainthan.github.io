@@ -1,157 +1,153 @@
 import React from 'react';
-import './About.css';
 import {
-  FaCode,
-  FaShieldAlt,
-  FaUsers,
-  FaDatabase,
-  FaServer,
-  FaGraduationCap,
-  FaCloud,
-  FaUniversity,
-  FaAward,
-  FaProjectDiagram
+  FaCode, FaShieldAlt, FaDatabase, FaServer,
+  FaCloud, FaUsers, FaGraduationCap, FaAward,
+  FaMapMarkerAlt, FaEnvelope, FaPhone, FaArrowRight,
 } from 'react-icons/fa';
+import { personalInfo, assets, aboutData } from '../../../data/portfolioData';
+import './About.css';
 
 const About = () => {
-  const techStack = [
-    'Java', 'Node.js', 'React', 'Angular', 'MongoDB', 'MySQL',
-    'AWS', 'JWT', 'REST APIs', 'Redis', 'Docker', 'Git',
-    'HTML5', 'CSS3', 'JavaScript', 'Servlet', 'JSP', 'C',
-    'Applets'
-  ];
-
-  const highlights = [
-    {
-      icon: <FaCode />,
-      title: "Full-Stack Development",
-      description: "Building end-to-end applications with Java, Node.js, and modern frameworks"
-    },
-    {
-      icon: <FaServer />,
-      title: "API Development",
-      description: "Designed RESTful APIs for efficient system communication"
-    },
-    {
-      icon: <FaDatabase />,
-      title: "Database Management",
-      description: "Optimized MongoDB queries and MySQL performance"
-    },
-    {
-      icon: <FaShieldAlt />,
-      title: "Security Implementation",
-      description: "JWT authentication with role-based access control"
-    },
-    {
-      icon: <FaUsers />,
-      title: "Agile Team Player",
-      description: "Collaborated in Agile teams at PSG Tech and Zoho"
-    },
-    {
-      icon: <FaCloud />,
-      title: "Cloud Integration",
-      description: "Implemented AWS S3 for cloud storage solutions"
-    },
-    {
-      icon: <FaProjectDiagram />,
-      title: "Project Experience",
-      description: "Developed multiple production-grade applications"
-    }
-  ];
-
-  const education = {
-    degree: "B.Tech in Information Technology",
-    institution: "Sri Shakthi Institute of Engineering and Technology",
-    duration: "2019-2023",
-    cgpa: "7.9 CGPA"
-  };
-
-  const certifications = [
-    "Certified in Java (KICE Infosystems, 2019)"
-  ];
-
-  const strengths = [
-    "Quick Learner",
-    "Problem Solver",
-    "Team Player",
-    "Creative Thinker"
-  ];
-
   return (
     <section className="about" id="about">
-      <div className="about-container">
-        <div className="about-header">
-          <h2 className="about-title">
-            <span className="title-highlight">About Me</span>
-          </h2>
-          <p className="about-subtitle">Full-Stack Developer | Java & JavaScript Specialist</p>
+      <div className="container">
+
+        {/* ── Modern section header ── */}
+        <div className="about__header" data-animate>
+          <div className="section-title-wrap">
+            <span className="section-eyebrow">
+              <span className="section-eyebrow__line" />
+              About Me
+              <span className="section-eyebrow__line" />
+            </span>
+            <h2 className="section-title-modern">
+              The person behind
+              <span className="section-title-modern__accent"> the code</span>
+              <span className="about__dot">.</span>
+            </h2>
+            <p className="section-title-modern__sub">
+              Building robust software with a passion for clean architecture
+            </p>
+          </div>
         </div>
 
-        <div className="about-content">
-          <div className="about-text">
-            <p className="about-desc">
-              I'm a <strong>solution-driven software developer</strong> with professional experience at <strong>PSG Software Technologies</strong> and <strong>Zoho Corporation</strong>, specializing in full-stack development with expertise in both frontend and backend technologies.
-            </p>
-            
-            <p className="about-desc">
-              My technical skills encompass the complete software development lifecycle, from requirement analysis to deployment. I've successfully delivered projects involving <strong>payment gateway integration</strong> (Paytm, Billdesk), <strong>cloud storage solutions</strong> (AWS S3), and <strong>secure authentication</strong> systems.
-            </p>
+        {/* ── Hero bento grid ── */}
+        <div className="about__bento" data-animate>
 
-            <div className="about-highlights">
-              {highlights.map((item, index) => (
-                <div className="highlight-card" key={index}>
-                  <div className="highlight-front">
-                    <span className="highlight-icon">{item.icon}</span>
-                    <h4>{item.title}</h4>
-                  </div>
-                  <div className="highlight-back">
-                    <p>{item.description}</p>
-                  </div>
+          {/* Profile card — tall left column */}
+          <div className="about__bento-profile">
+            <div className="about__avatar-frame">
+              <div className="about__avatar-glow" />
+              <img
+                src={assets.profileImages.about}
+                alt={`${personalInfo.name.first} ${personalInfo.name.last}`}
+                className="about__avatar-img"
+                loading="lazy"
+              />
+              <div className="about__avatar-badge">
+                <span className="about__avatar-badge-dot" />
+                Available
+              </div>
+            </div>
+
+            <div className="about__profile-text">
+              <p className="about__profile-name">{personalInfo.name.first} {personalInfo.name.last}</p>
+              <p className="about__profile-role">Software Engineer</p>
+            </div>
+
+            <div className="about__contact-list">
+              <a className="about__contact-item" href={`mailto:${personalInfo.contact.email}`}>
+                <span className="about__contact-icon"><FaEnvelope /></span>
+                <span className="about__contact-label">{personalInfo.contact.email}</span>
+              </a>
+              <div className="about__contact-item">
+                <span className="about__contact-icon"><FaPhone /></span>
+                <span className="about__contact-label">{personalInfo.contact.phone}</span>
+              </div>
+              <div className="about__contact-item">
+                <span className="about__contact-icon"><FaMapMarkerAlt /></span>
+                <span className="about__contact-label">{personalInfo.contact.location}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats row */}
+          <div className="about__bento-stats">
+            {aboutData.stats.map((s, i) => (
+              <div key={s.label} className="about__stat-tile" style={{ '--i': i }}>
+                <span className="about__stat-num">{s.num}</span>
+                <span className="about__stat-label">{s.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Bio card */}
+          <div className="about__bento-bio">
+            <p className="about__desc">
+              {personalInfo.bioAbout[0]}
+            </p>
+            <p className="about__desc">
+              {personalInfo.bioAbout[1]}
+            </p>
+          </div>
+
+          {/* Highlight grid */}
+          <div className="about__bento-highlights">
+            {aboutData.highlights.map((h, i) => (
+              <div key={i} className="about__hl-card" data-animate data-delay={i * 60}>
+                <span className="about__hl-icon">{h.icon}</span>
+                <div>
+                  <h4 className="about__hl-title">{h.title}</h4>
+                  <p className="about__hl-desc">{h.desc}</p>
                 </div>
-              ))}
-            </div>
-
-            <div className="education-section">
-              <h4 className="about-section-title">
-                <FaUniversity className="section-icon" /> Education
-              </h4>
-              <div className="education-item">
-                <h4>{education.degree}</h4>
-                <p>{education.institution} • {education.duration}</p>
-                <p>{education.cgpa}</p>
+                <FaArrowRight className="about__hl-arrow" />
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
 
-            <div className="certifications-section">
-              <h3 className="about-section-title">
-                <FaAward className="section-icon" /> Certifications
-              </h3>
-              <ul>
-                {certifications.map((cert, index) => (
-                  <li key={index}>{cert}</li>
-                ))}
-              </ul>
+        {/* ── Bottom: edu / cert / tech ── */}
+        <div className="about__bottom" data-animate>
+
+          <div className="about__edu">
+            <div className="about__section-label">
+              <FaGraduationCap className="about__section-icon" />
+              <span>Education</span>
+            </div>
+            <div className="about__edu-card">
+              <div className="about__edu-year-bar">{aboutData.education.year}</div>
+              <h4>{aboutData.education.degree}</h4>
+              <p>{aboutData.education.institution}</p>
+              <div className="about__edu-meta">
+                <span className="tag">{aboutData.education.cgpa}</span>
+              </div>
             </div>
           </div>
 
-          <div className="about-tech">
-            <h3 className="tech-title">Technical Proficiencies</h3>
-            <div className="tech-grid">
-              {techStack.map((tech, index) => (
-                <div className="tech-item" key={index}>{tech}</div>
-              ))}
+          <div className="about__cert">
+            <div className="about__section-label">
+              <FaAward className="about__section-icon" />
+              <span>Certification</span>
             </div>
+            <div className="about__cert-item">
+              <span className="about__cert-bullet" />
+              {aboutData.certification}
+            </div>
+          </div>
 
-            <div className="key-strengths">
-              <h3 className="tech-title">Key Strengths</h3>
-              <div className="strengths-grid">
-                {strengths.map((strength, index) => (
-                  <div className="strength-item" key={index}>{strength}</div>
-                ))}
-              </div>
+          <div className="about__tech">
+            <div className="about__section-label">
+              <FaCode className="about__section-icon" />
+              <span>Tech Stack</span>
+            </div>
+            <div className="about__tech-grid">
+              {aboutData.techStack.map(t => (
+                <span key={t} className="tag">{t}</span>
+              ))}
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

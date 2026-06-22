@@ -1,52 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import { FaBars, FaTimes, FaMoon, FaSun, FaDownload } from 'react-icons/fa';
 import { useTheme } from '../../../context/ThemeContext';
+import { personalInfo, assets } from '../../../data/portfolioData';
 import './Header.css';
+
+const NAV = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
+const LABELS = { hero: 'Home', about: 'About', skills: 'Skills', experience: 'Experience', projects: 'Projects', contact: 'Contact' };
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState('hero');
   const { theme, toggleTheme } = useTheme();
   const headerRef = useRef(null);
 
-  const handleScroll = () => {
-    const headerHeight = headerRef.current?.offsetHeight || 0;
-    setIsSticky(window.scrollY > headerHeight * 0.5);
-    
-    const sections = document.querySelectorAll('section[id]');
-    let current = 'hero';
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.clientHeight;
-      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
-      }
-    });
-    setActiveSection(current);
-  };
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (section) {
-      const headerHeight = headerRef.current?.offsetHeight || 0;
-      const offsetPosition = section.offsetTop - headerHeight;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      setMenuOpen(false);
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60);
+      const sections = document.querySelectorAll('section[id]');
+      let cur = 'hero';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+      });
+      setActive(cur);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
@@ -54,107 +34,87 @@ const Header = () => {
     return () => document.body.classList.remove('menu-open');
   }, [menuOpen]);
 
-  return (
-    <header 
-      className={`header ${isSticky ? 'sticky' : ''} ${menuOpen ? 'menu-open' : ''}`} 
-      ref={headerRef}
-    >
-      <div className='header-container'>
-        <div className='brand'>
-          <img
-            src={theme === 'dark' ? '/assets/img/logo/km_logo-white.png' : '/assets/img/logo/km_logo.png'}
-            alt='Logo'
-            className='logo'
-          />
-          <span className='name'>Karpagamainthan M</span>
-        </div>
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const hh = headerRef.current?.offsetHeight || 0;
+      window.scrollTo({ top: el.offsetTop - hh, behavior: 'smooth' });
+    }
+    setMenuOpen(false);
+  };
 
-        <nav className='desktop-nav'>
-          <ul className='nav-list'>
-            {['hero', 'about', 'skills', 'experience', 'projects', 'contact'].map((section) => (
-              <li key={section}>
-                <button
-                  className={`nav-link ${activeSection === section ? 'active' : ''}`}
-                  onClick={() => scrollToSection(section)}
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </button>
-              </li>
-            ))}
-          </ul>
+  return (
+    <header ref={headerRef} className={`header${scrolled ? ' scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
+      <div className="header__inner">
+        {/* Logo */}
+        <button className="header__logo" onClick={() => scrollTo('hero')}>
+          <img
+            src={theme === 'dark' ? assets.logo.dark : assets.logo.light}
+            alt={`${personalInfo.name.first} Logo`}
+            className="header__logo-img"
+          />
+          <span className="header__logo-name">{personalInfo.name.first}<span className="dot">.</span></span>
+        </button>
+
+        {/* Desktop nav */}
+        <nav className="header__nav">
+          {NAV.map((id, i) => (
+            <button
+              key={id}
+              className={`nav-item${active === id ? ' active' : ''}`}
+              onClick={() => scrollTo(id)}
+              style={{ '--i': i }}
+            >
+              {LABELS[id]}
+            </button>
+          ))}
         </nav>
 
-        <div className='actions'>
-          <button
-            className='theme-toggle'
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          >
-            {theme === 'dark' ? (
-              <FaSun className='icon' />
-            ) : (
-              <FaMoon className='icon' />
-            )}
+        {/* Actions */}
+        <div className="header__actions">
+          <button className="theme-btn" onClick={toggleTheme} aria-label="Toggle theme">
+            {theme === 'dark' ? <FaSun /> : <FaMoon />}
           </button>
-          <a
-            href='/assets/pdf/Karpagamainthan_Resume.pdf'
-            className='download-btn'
-            download
-          >
+          <a href={personalInfo.resumeUrl} className="resume-btn" download>
+            <FaDownload className="resume-btn__icon" />
             <span>Resume</span>
-            <FaDownload className='download-icon' />
           </a>
-          <button
-            className='menu-toggle'
-            onClick={toggleMenu}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          >
+          <button className="hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-        <div className='mobile-menu-container'>
-          <div className='mobile-nav'>
-            <ul>
-              {['hero', 'about', 'skills', 'experience', 'projects', 'contact'].map((section) => (
-                <li key={section}>
-                  <button
-                    className={`mobile-nav-link ${activeSection === section ? 'active' : ''}`}
-                    onClick={() => scrollToSection(section)}
-                  >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className='mobile-actions'>
-            <button
-              className='mobile-theme-toggle'
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            >
-              {theme === 'dark' ? (
-                <>
-                  <FaSun className='icon' />
-                  <span>Light Mode</span>
-                </>
-              ) : (
-                <>
-                  <FaMoon className='icon' />
-                  <span>Dark Mode</span>
-                </>
-              )}
+      {/* Backdrop — rendered into body so it sits in the root stacking context
+          and reliably receives taps across every section including Hero */}
+      {menuOpen && ReactDOM.createPortal(
+        <div className="mobile-overlay" onClick={() => setMenuOpen(false)} />,
+        document.body
+      )}
+
+      {/* Mobile menu */}
+      <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
+        <div className="mobile-menu__inner">
+          <nav className="mobile-nav">
+            {NAV.map((id, i) => (
+              <button
+                key={id}
+                className={`mobile-nav-item${active === id ? ' active' : ''}`}
+                onClick={() => scrollTo(id)}
+                style={{ '--i': i }}
+              >
+                <span className="mobile-nav-num">{String(i + 1).padStart(2, '0')}</span>
+                {LABELS[id]}
+              </button>
+            ))}
+          </nav>
+          <div className="mobile-menu__footer">
+            <button className="theme-btn theme-btn--mobile" onClick={toggleTheme}>
+              {theme === 'dark' ? <FaSun /> : <FaMoon />}
+              <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
             </button>
-            <a
-              href='/assets/pdf/Karpagamainthan_Resume.pdf'
-              className='mobile-download-btn'
-              download
-            >
-              <FaDownload className='icon' />
+            <a href={personalInfo.resumeUrl} className="resume-btn resume-btn--mobile" download>
+              <FaDownload />
               <span>Download Resume</span>
             </a>
           </div>
